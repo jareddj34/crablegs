@@ -12,10 +12,10 @@ export default function LoginForm() {
     const handleSubmit = () => {
         event.preventDefault();
         if (!validUser) {
-            throw new Error('Username is invalid you retard!!!!')
+            throw new Error('Username is invalid')
         }
         if (!validPass) {
-            throw new Error('Password is invalid you retard!!!!')
+            throw new Error('Password is invalid')
         }
         router.push('/info')
         console.log(username, password);
