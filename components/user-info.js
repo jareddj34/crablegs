@@ -49,7 +49,7 @@ export default function UserInfo(){
                 <select value={sex} onChange={handleSetSex}>
                     <option value="">Select an option</option>
                     <option value="male">male</option>
-                    <option value="male">female</option>
+                    <option value="female">female</option>
                     <option value="n/a">Prefer not to say</option>
                 </select>
             </p>
