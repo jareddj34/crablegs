@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import UserInfo from '/components/user-info';
 
 export default function Info() {
 
@@ -11,6 +12,7 @@ export default function Info() {
             <h1>
                 Tell us about yourself
             </h1>
+            <UserInfo />
         </div>
     )
 }

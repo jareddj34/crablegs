@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-
 import { useState } from 'react';
 import Image from 'next/image';
 import LoginForm from '/components/login-form';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -16,6 +16,8 @@ export default function Home() {
         Crab Legs
       </h1>
       <LoginForm />
+
+      <Link href = "/info">Click for info page</Link>
     </div>
   )
 }
