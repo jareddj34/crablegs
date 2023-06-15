@@ -17,7 +17,7 @@ export default function Home() {
       </h1>
       <LoginForm />
 
-      <Link href = "/info">Click for info page</Link>
+      <Link href="/info">Click for info page</Link>
     </div>
   )
 }
