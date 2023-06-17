@@ -1,8 +1,15 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import UserInfo from '/components/user-info';
+import UserInfo, { test } from '/components/user-info';
+import { useState } from 'react';
 
 export default function Info() {
+
+  const [weight, setWeight] = useState('');
+
+  const handleWeightChange = (value) => {
+    setWeight(value);
+  };
 
   return (
 

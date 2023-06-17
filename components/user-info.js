@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { Configuration, OpenAIApi } from 'openai';
+
+const openai = new OpenAIApi(new Configuration ({
+  apiKey: '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'
+
+}))
+
 
 export default function UserInfo() {
   const [weight, setWeight] = useState('');
@@ -8,20 +15,35 @@ export default function UserInfo() {
   const [age, setAge] = useState('');
   const [sex, setSex] = useState('');
   const [goals, setGoals] = useState('');
+  const [responseContent, setResponseContent] = useState('');
+  const [showForm, setShowForm] = useState(true);
 
   const handleSetSex = (e) => {
     setSex(e.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setShowForm(false);
     console.log(weight, feet, inches, age, sex);
-    // create new user object in prisma and add a username and password to it
+    const res = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. What should I do?`}],
+    })
+    const content = (res.data.choices[0].message.content);
+    setResponseContent(content);
   };
+
+  const handleGoBack = (event) => {
+    setShowForm(true);
+    setResponseContent('');
+  }
+
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      { showForm && (
+        <form onSubmit={handleSubmit}>
         <p>
           <label>
             Weight(lbs): 
@@ -68,7 +90,14 @@ export default function UserInfo() {
         <p>
           <Link href="/">Click to go back</Link>
         </p>
+        
       </form>
+      )}
+
+     <p>{responseContent}</p>
+      <button onClick={handleGoBack}>
+        Go Back
+      </button>
 
 
 
@@ -132,6 +161,8 @@ export default function UserInfo() {
     </div>
   );
 }
+
+
 
 /*
 import { useState } from 'react';
