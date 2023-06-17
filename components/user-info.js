@@ -3,7 +3,8 @@ import Link from 'next/link';
 
 export default function UserInfo() {
   const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
+  const [feet, setFeet] = useState('');
+  const [inches, setInches] = useState('');
   const [age, setAge] = useState('');
   const [sex, setSex] = useState('');
   const [goals, setGoals] = useState('');
@@ -14,7 +15,7 @@ export default function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(weight, height, age, sex);
+    console.log(weight, feet, inches, age, sex);
     // create new user object in prisma and add a username and password to it
   };
 
@@ -31,9 +32,9 @@ export default function UserInfo() {
         <p>
           <label>
             Height:
-            <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value)} />
+            <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} />
             ft.
-            <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value)} />
+            <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} />
             in.
           </label>
         </p>
@@ -68,6 +69,8 @@ export default function UserInfo() {
           <Link href="/">Click to go back</Link>
         </p>
       </form>
+
+
 
       <style jsx>{`
         .container {
