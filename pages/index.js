@@ -1,33 +1,34 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { useState } from 'react';
-import Image from 'next/image';
-import LoginForm from '/components/login-form';
 import Link from 'next/link';
+import Head from 'next/head';
+import UserInfo from '/components/user-info';
 
-export default function Home() {
+export default function Info() {
+
   return (
+
     <div>
-      {/* For the center styling */}
-      <style jsx>
+
+      <style jsx global>
         {`
-        *{
-          text-align: center;
-        }
-        `}
+                body {
+                    background-color: white;
+                }
+                `}
       </style>
-      
 
-      <Image src='/images/crab.png'
-        alt='crablegs'
-        height={200}
-        width={200} />
-      <h1 style={{ color: 'red' }}>
-        Crab Legs
+      <Head>
+        <title>User info page</title>
+      </Head>
+      <h1 style={{
+        textAlign: 'center',
+        fontFamily: 'Arial, sans-serif',
+        fontSize: '50px',
+        color: 'green'
+      }}>
+        Tell us about yourself
       </h1>
-      <LoginForm />
 
-      <Link href="/info">Click for info page</Link>
+      <UserInfo />
     </div>
   )
 }
