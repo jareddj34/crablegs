@@ -8,6 +8,16 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div>
+      {/* For the center styling */}
+      <style jsx>
+        {`
+        *{
+          text-align: center;
+        }
+        `}
+      </style>
+      
+
       <Image src='/images/crab.png'
         alt='crablegs'
         height={200}

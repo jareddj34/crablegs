@@ -6,6 +6,7 @@ export default function UserInfo() {
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [sex, setSex] = useState('');
+  const [goals, setGoals] = useState('');
 
   const handleSetSex = (e) => {
     setSex(e.target.value);
@@ -13,7 +14,7 @@ export default function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(weight, height, age);
+    console.log(weight, height, age, sex);
     // create new user object in prisma and add a username and password to it
   };
 
@@ -22,22 +23,25 @@ export default function UserInfo() {
       <form onSubmit={handleSubmit}>
         <p>
           <label>
-            Weight:
+            Weight(lbs): 
             <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} />
           </label>
         </p>
 
         <p>
           <label>
-            Height (in.):
+            Height:
             <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value)} />
+            ft.
+            <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value)} />
+            in.
           </label>
         </p>
 
         <p>
           <label>
             Age:
-            <input type="number" min="0" value={age} onChange={(e) => setAge(e.target.value)} />
+            <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} />
           </label>
         </p>
 
@@ -49,6 +53,13 @@ export default function UserInfo() {
             <option value="female">Female</option>
             <option value="n/a">Prefer not to say</option>
           </select>
+        </p>
+
+        <p>
+          <label>
+            What are your fitness goals?
+            <textarea value = {goals} onChange={(e) => setGoals(e.target.value)}/>
+          </label>
         </p>
 
         <input type="submit" value="Submit" />
