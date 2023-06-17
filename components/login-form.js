@@ -17,9 +17,18 @@ export default function LoginForm() {
         if (!validPass) {
             throw new Error('Password is invalid')
         }
-        router.push('/info')
-        console.log(username, password);
-        //create new user object in prisma and put add a username and password to it
+        const response = fetch('/api/createUser', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+            router.push('/info')
+        } else {
+            // Handle error
+            console.error('Failed to create user');
+        }
     }
 
     return (
