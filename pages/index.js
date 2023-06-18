@@ -13,10 +13,6 @@ export default function Info() {
         <title>User info page</title>
       </Head>
 
-      <h1 className="title">
-        Tell Us About Yourself
-      </h1>
-
       <UserInfo />
 
       <style jsx>{`

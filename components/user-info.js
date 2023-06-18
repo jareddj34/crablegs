@@ -25,7 +25,7 @@ export default function UserInfo() {
     setShowButton(true);
 
     const openai = new OpenAIApi(new Configuration({
-      apiKey: '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'
+      apiKey: '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'
     }))
 
     //request for first response (general tips)
@@ -53,6 +53,11 @@ export default function UserInfo() {
 
   return (
     <div className="container">
+      {showForm && (
+        <h1 className="title">
+          Tell Us About Yourself
+        </h1>
+      )}
       {showForm && (
         <form onSubmit={handleSubmit}>
           <p>
@@ -106,19 +111,17 @@ export default function UserInfo() {
         </form>
       )}
 
-      <p>{response}</p>
-      <p>{response2}</p>
 
-
-      {!showForm && responseContent == '' ? (
-        <div className = "loader"></div>
-      ): (
+      {!showForm && response2 == '' ? (
+        <div className="loader"></div>
+      ) : (
         <div>
-        <p>{responseContent}</p>
-        {showButton && (
-        <button onClick={handleGoBack} className="go-back-btn">
-          Go Back
-        </button>
+          <p style={{ margin: '50px' }}>{response}</p>
+          <p style={{ margin: '50px' }}>{response2}</p>
+          {showButton && (
+            <button onClick={handleGoBack} className="go-back-btn">
+              Go Back
+            </button>
           )}
         </div>
       )}
@@ -154,10 +157,11 @@ export default function UserInfo() {
             border: 16px solid #f3f3f3;
             border-radius: 50%;
             border-top: 16px solid #3498db;
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             -webkit-animation: spin 2s linear infinite; /* Safari */
             animation: spin 2s linear infinite;
+            margin: 60px;
           }
           
           /* Safari */
@@ -227,6 +231,18 @@ export default function UserInfo() {
           cursor: pointer;
           font-weight: bold;
           margin-top: 10px;
+          margin: auto;
+          display: flex;
+          
+        }
+
+        .title {
+          text-align: center;
+          font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+          color: black;
+          font-size: 3em;
+          font-weight: bold;
+          margin: 40px auto 40px auto;
         }
       `}</style>
     </div>
