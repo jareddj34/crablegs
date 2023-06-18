@@ -5,31 +5,32 @@ import { useState } from 'react';
 import Retrieve from '/components/calendar-retrieve';
 import Image from 'next/image';
 import NavBar from '../components/navbar';
+import LoginForm from '../components/loginform';
 
-export default function Info() {
+export default function LoginPage() {
 
-  return (
-    <div className="info-container">
-      <div className='banner'>
-        <NavBar />
-      </div>
-      <Head>
-        <title>User info page</title>
-      </Head>
+    return (
+        <div className="info-container">
+            <div className='banner'>
+                <NavBar />
+            </div>
+            <Head>
+                <title>User info page</title>
+            </Head>
 
-      <Image src="/images/crab.png" width='60' height='50' z-index='2000' style={{
-        position: 'fixed',
-        top: '3.5%',
-        left: '2.5%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 2000
-      }} />
+            <Image src="/images/crab.png" width='60' height='50' z-index='2000' style={{
+                position: 'fixed',
+                top: '3.5%',
+                left: '2.5%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 2000
+            }} />
 
-      <UserInfo />
+            <LoginForm />
 
 
 
-      <style jsx>{`
+            <style jsx>{`
         .banner{
           width: 100%;
           height: 60px;
@@ -58,6 +59,6 @@ export default function Info() {
           margin: 60px auto auto auto;
         }
       `}</style>
-    </div>
-  )
+        </div>
+    )
 }
