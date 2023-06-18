@@ -9,7 +9,8 @@ export default function UserInfo() {
   const [age, setAge] = useState('');
   const [sex, setSex] = useState('');
   const [goals, setGoals] = useState('');
-  const [responseContent, setResponseContent] = useState('');
+  const [response, setResponse] = useState('');
+  const [response2, setResponse2] = useState('');
   const [showForm, setShowForm] = useState(true);
   const [showButton, setShowButton] = useState(false);
 
@@ -24,22 +25,30 @@ export default function UserInfo() {
     setShowButton(true);
 
     const openai = new OpenAIApi(new Configuration({
-      apiKey: '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'
+      apiKey: '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'
     }))
 
+    //request for first response (general tips)
     const res = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} year old ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. Give me a numbered list on what should I do?` }],
+      messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} year old ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. Give me a detailed numbered list on what should I do?` }],
     })
-    //
     const content = (res.data.choices[0].message.content);
-    setResponseContent(content);
+    setResponse(content);
+    //request for 2nd response (calorie consumption suggestion)
+    const res2 = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: `Based on my height of ${feet} feet ${inches} inches, weight of ${weight} pounds and that my sex is ${sex}, calculate how man calories i need to be eating per day in order to maintain my weight, lose weight, or gain weight. then motivate me to achieve my diet goals. make your response pretty simple, and just tell me my calorie consumption recommendations based on the average calorie burnage per day of a person with the same characteristics as me. DONT MAKE THE RESPONSE LONGER THA 150 words.` }],
+    })
+    const content2 = (res2.data.choices[0].message.content);
+    setResponse2(content2);
   };
 
   const handleGoBack = (event) => {
     setShowButton(false);
     setShowForm(true);
-    setResponseContent('');
+    setResponse('');
+    setResponse2('');
   }
 
   return (
@@ -49,29 +58,29 @@ export default function UserInfo() {
           <p>
             <label>
               Weight:
-              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder='lbs' style = {{marginLeft: "10px"}}/>
+              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder='lbs' style={{ marginLeft: "10px" }} />
             </label>
           </p>
 
           <p>
             <label>
               Height:
-              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} placeholder='ft.' style={{ width: "200px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px", marginTop: "-5px"}}/>
-              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} placeholder='in.' style={{ width: "200px" }}/>
+              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} placeholder='ft.' style={{ width: "200px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px", marginTop: "-5px" }} />
+              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} placeholder='in.' style={{ width: "200px" }} />
             </label>
           </p>
 
           <p>
             <label>
               Age:
-              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} placeholder="yrs" style = {{marginLeft: "10px"}}/>
+              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} placeholder="yrs" style={{ marginLeft: "10px" }} />
             </label>
           </p>
 
           <p>
             <label>
               Sex:
-              <select value={sex} onChange={handleSetSex} style = {{marginLeft: "10px"}}>
+              <select value={sex} onChange={handleSetSex} style={{ marginLeft: "10px" }}>
                 <option value="">Select an option</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -90,14 +99,15 @@ export default function UserInfo() {
               What are your fitness goals?
             </p>
             <p>
-              <textarea value={goals} onChange={(e) => setGoals(e.target.value)} placeholder = "I want to..."/>
+              <textarea value={goals} onChange={(e) => setGoals(e.target.value)} placeholder="I want to..." />
             </p>
           </p>
           <input type="submit" value="Submit" className="submit-btn" />
         </form>
       )}
 
-      <p>{responseContent}</p>
+      <p>{response}</p>
+      <p>{response2}</p>
 
       {showButton &&
         (<button onClick={handleGoBack} className="go-back-btn">
