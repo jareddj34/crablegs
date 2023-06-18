@@ -17,7 +17,7 @@ export default function Info() {
         <title>User info page</title>
       </Head>
 
-      <Image src="/images/crab.png" width='60' height='50' z-index='2000' style={{
+      <Image src="/images/Crab.png" width='60' height='50' z-index='2000' style={{
         position: 'fixed',
         top: '3.5%',
         left: '2.5%',
