@@ -13,6 +13,7 @@ export default function UserInfo() {
   const [response2, setResponse2] = useState('');
   const [showForm, setShowForm] = useState(true);
   const [showButton, setShowButton] = useState(false);
+  const calorie = "Calorie Consumption Suggestion:";
 
 
   const handleSetSex = (e) => {
@@ -25,7 +26,7 @@ export default function UserInfo() {
     setShowButton(true);
 
     const openai = new OpenAIApi(new Configuration({
-      apiKey: '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'
+      apiKey: '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'
     }))
 
     //request for first response (general tips)
@@ -34,14 +35,15 @@ export default function UserInfo() {
       messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} year old ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. Give me a detailed numbered list on what should I do?` }],
     })
     const content = (res.data.choices[0].message.content);
-    setResponse(content);
+    setResponse("Step-by-step plan for your goal: " + content);
     //request for 2nd response (calorie consumption suggestion)
     const res2 = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: `Based on my height of ${feet} feet ${inches} inches, weight of ${weight} pounds and that my sex is ${sex}, calculate how man calories i need to be eating per day in order to maintain my weight, lose weight, or gain weight. then motivate me to achieve my diet goals. make your response pretty simple, and just tell me my calorie consumption recommendations based on the average calorie burnage per day of a person with the same characteristics as me. DONT MAKE THE RESPONSE LONGER THA 150 words.` }],
     })
     const content2 = (res2.data.choices[0].message.content);
-    setResponse2(content2);
+    setResponse2(calorie + "\n" + content2);
+
   };
 
   const handleGoBack = (event) => {
@@ -117,7 +119,6 @@ export default function UserInfo() {
       ) : (
         <div>
           <p style={{ margin: '50px' }}>{response}</p>
-          Calorie Consumption Suggestion:
           <p style={{ margin: '50px' }}>{response2}</p>
           {showButton && (
             <button onClick={handleGoBack} className="go-back-btn">
