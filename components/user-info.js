@@ -25,7 +25,7 @@ export default function UserInfo() {
     setShowButton(true);
 
     const openai = new OpenAIApi(new Configuration({
-      apiKey: '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'
+      apiKey: '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'
     }))
 
     //request for first response (general tips)

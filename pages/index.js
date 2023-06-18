@@ -3,6 +3,7 @@ import Head from 'next/head';
 import UserInfo from '/components/user-info';
 import { useState } from 'react';
 import Retrieve from '/components/calendar-retrieve';
+import Image from 'next/image';
 
 export default function Info() {
 
@@ -13,7 +14,17 @@ export default function Info() {
         <title>User info page</title>
       </Head>
 
+      <Image src = "/images/crab.png" width = '60' height = '50' z-index = '2000'style={{
+    position: 'fixed',
+    top: '3.5%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 2000
+  }}/>
+
       <UserInfo />
+
+
 
       <style jsx>{`
         .banner{
