@@ -2,14 +2,15 @@ import Link from 'next/link';
 import Head from 'next/head';
 import UserInfo from '/components/user-info';
 import { useState } from 'react';
+import Retrieve from '/components/calendar-retrieve';
 import Image from 'next/image';
+
 
 export default function Info() {
 
   return (
     <div className="info-container">
-      <div className='banner'>
-      </div>
+      <div className='banner'></div>
       <Head>
         <title>User info page</title>
       </Head>
