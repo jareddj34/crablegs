@@ -1,41 +1,42 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import UserInfo, { test } from '/components/user-info';
+import UserInfo from '/components/user-info';
 import { useState } from 'react';
 
 export default function Info() {
 
-  const [weight, setWeight] = useState('');
-
-  const handleWeightChange = (value) => {
-    setWeight(value);
-  };
-
   return (
-
-    <div>
-
-      <style jsx global>
-        {`
-                body {
-                    background-color: white;
-                }
-                `}
-      </style>
+    <div className="info-container">
+      <style jsx global>{`
+        body {
+          background-color: #a6463d;
+          font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+      `}</style>
 
       <Head>
         <title>User info page</title>
       </Head>
-      <h1 style={{
-        textAlign: 'center',
-        fontFamily: 'Arial, sans-serif',
-        fontSize: '50px',
-        color: 'green'
-      }}>
+
+      <h1 className="title">
         Tell us about yourself
       </h1>
 
       <UserInfo />
+
+      <style jsx>{`
+        .info-container {
+          padding: 20px;
+        }
+
+        .title {
+          text-align: center;
+          color: #333;
+          font-size: 2em;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+      `}</style>
     </div>
   )
 }
