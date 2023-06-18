@@ -7,34 +7,45 @@ export default function Info() {
 
   return (
     <div className="info-container">
-      <style jsx global>{`
-        body {
-          background-color: #a6463d;
-          font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-      `}</style>
-
+      <div className='banner'>
+      </div>
       <Head>
         <title>User info page</title>
       </Head>
 
       <h1 className="title">
-        Tell us about yourself
+        Tell Us About Yourself
       </h1>
 
       <UserInfo />
 
       <style jsx>{`
+        .banner{
+          width: 100%;
+          height: 60px;
+          background-color: #e73845;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1000;
+        }
+
+        body {
+          background-color: #white;
+          font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
         .info-container {
           padding: 20px;
         }
 
         .title {
           text-align: center;
-          color: #333;
-          font-size: 2em;
+          font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+          color: black;
+          font-size: 3em;
           font-weight: bold;
-          margin-bottom: 20px;
+          margin: 60px auto auto auto;
         }
       `}</style>
     </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Configuration, OpenAIApi } from 'openai';
 
 const openai = new OpenAIApi(new Configuration({
-  apiKey: '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'
+  apiKey: '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'
 }))
 
 export default function UserInfo() {
@@ -46,25 +46,23 @@ export default function UserInfo() {
         <form onSubmit={handleSubmit}>
           <p>
             <label>
-              Weight(lbs):
-              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} />
+              Weight:
+              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder='lbs' />
             </label>
           </p>
 
           <p>
             <label>
               Height:
-              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} />
-              ft.
-              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} />
-              in.
+              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} placeholder='ft.' />
+              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} placeholder='in.' />
             </label>
           </p>
 
           <p>
             <label>
               Age:
-              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} />
+              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} placeholder="yrs" />
             </label>
           </p>
 
@@ -81,10 +79,17 @@ export default function UserInfo() {
           </p>
 
           <p>
-            <label>
+            <p style={{
+              textAlign: 'center',
+              marginBottom: '10px',
+              fontWeight: '600',
+              color: 'black'
+            }}>
               What are your fitness goals?
+            </p>
+            <p>
               <textarea value={goals} onChange={(e) => setGoals(e.target.value)} />
-            </label>
+            </p>
           </p>
           <input type="submit" value="Submit" className="submit-btn" />
         </form>
@@ -104,8 +109,8 @@ export default function UserInfo() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 20px;
-          background-color: #a6463d;
+          padding: 40px;
+          background-color: white;
           font-family: 'Open Sans', sans-serif;
           color: #333;
         }
@@ -113,34 +118,52 @@ export default function UserInfo() {
         form {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: left;
           justify-content: center;
-          width: 50%;
+          width: 40%;
           margin: 0 auto;
           border: none;
-          border-radius: 5px;
-          padding: 10px;
-          background-color: #c73022;
-          box-shadow: 7px 7px 8px 5px rgba(0, 0, 0, 0.1);
-        }
+          border-radius: 35px;
+          padding: 30px;
+          background-color: #d9d9d9;
+          font-size: 30px;
+          }
 
         label {
           margin-bottom: 10px;
           font-weight: 600;
-          color: #333;
+          color: black;
+          text-align: left;
         }
 
-        input[type='number'], select, textarea {
-          width: 100%;
+        input[type='number'], select {
+          width: 75%;
+          height: 25px;
           padding: 5px;
+          background-color: white;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+          border-radius: 5px;
+          margin-bottom: 10px;
+          color: black;
+        }
+
+        textarea {
+          align-items: center;
+          width: 500px;
+          height: 150px;
+          padding: 10px;
           border: 1px solid #c7c7c7;
           border-radius: 5px;
           margin-bottom: 10px;
+          resize: none;
         }
 
         .submit-btn {
           padding: 10px;
-          background-color: #ffd700;
+          background-color: #e73845;
           color: black;
           border: none;
           border-radius: 5px;
@@ -150,7 +173,7 @@ export default function UserInfo() {
 
         .go-back-btn {
           padding: 10px;
-          background-color: #ffd700;
+          background-color: #e73845;
           color: black;
           border: none;
           border-radius: 5px;
