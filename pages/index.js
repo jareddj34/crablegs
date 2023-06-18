@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import UserInfo from '/components/user-info';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Info() {
 
@@ -27,7 +28,7 @@ export default function Info() {
           position: fixed;
           top: 0;
           left: 0;
-          z-index: 1000;
+          z-index: 0;
         }
 
         body {
