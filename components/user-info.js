@@ -25,7 +25,7 @@ export default function UserInfo() {
     setShowButton(true);
 
     const openai = new OpenAIApi(new Configuration({
-      apiKey: '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'
+      apiKey: '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'
     }))
 
     //request for first response (general tips)
@@ -117,6 +117,7 @@ export default function UserInfo() {
       ) : (
         <div>
           <p style={{ margin: '50px' }}>{response}</p>
+          Calorie Consumption Suggestion:
           <p style={{ margin: '50px' }}>{response2}</p>
           {showButton && (
             <button onClick={handleGoBack} className="go-back-btn">
