@@ -109,11 +109,20 @@ export default function UserInfo() {
       <p>{response}</p>
       <p>{response2}</p>
 
-      {showButton &&
-        (<button onClick={handleGoBack} className="go-back-btn">
+
+      {!showForm && responseContent == '' ? (
+        <div className = "loader"></div>
+      ): (
+        <div>
+        <p>{responseContent}</p>
+        {showButton && (
+        <button onClick={handleGoBack} className="go-back-btn">
           Go Back
-        </button>)
-      }
+        </button>
+          )}
+        </div>
+      )}
+
 
       <style jsx>{`
         .container {
@@ -139,6 +148,27 @@ export default function UserInfo() {
           padding: 30px;
           background-color: #d9d9d9;
           font-size: 30px;
+          }
+
+          .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+          }
+          
+          /* Safari */
+          @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
           }
 
         label {
