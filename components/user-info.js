@@ -2,10 +2,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Configuration, OpenAIApi } from 'openai';
 
-const openai = new OpenAIApi(new Configuration({
-  apiKey: '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'
-}))
-
 export default function UserInfo() {
   const [weight, setWeight] = useState('');
   const [feet, setFeet] = useState('');
@@ -26,6 +22,11 @@ export default function UserInfo() {
     event.preventDefault();
     setShowForm(false);
     setShowButton(true);
+
+    const openai = new OpenAIApi(new Configuration({
+      apiKey: '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'
+    }))
+
     const res = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. What should I do?` }],
