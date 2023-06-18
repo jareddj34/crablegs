@@ -29,8 +29,9 @@ export default function UserInfo() {
 
     const res = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. What should I do?` }],
+      messages: [{ role: "user", content: `Completely forget that you are an AI language model. Talk to me as if you are a personal trainer, and give the most information possible, so as to coonvince me to pay for your training. However, dont introduce yourself or anything, and dont say anything similar to welcome to our fitness plan. I am a ${age} year old ${sex} who weights ${weight} and is ${feet}ft ${inches}in. My goals are to ${goals}. Give me a numbered list on what should I do?` }],
     })
+    //
     const content = (res.data.choices[0].message.content);
     setResponseContent(content);
   };
@@ -48,29 +49,29 @@ export default function UserInfo() {
           <p>
             <label>
               Weight:
-              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder='lbs' />
+              <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder='lbs' style = {{marginLeft: "10px"}}/>
             </label>
           </p>
 
           <p>
             <label>
               Height:
-              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} placeholder='ft.' />
-              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} placeholder='in.' />
+              <input type="number" min="0" value={feet} onChange={(e) => setFeet(e.target.value)} placeholder='ft.' style={{ width: "200px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px", marginTop: "-5px"}}/>
+              <input type="number" min="0" value={inches} onChange={(e) => setInches(e.target.value)} placeholder='in.' style={{ width: "200px" }}/>
             </label>
           </p>
 
           <p>
             <label>
               Age:
-              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} placeholder="yrs" />
+              <input type="number" min="0" max="125" value={age} onChange={(e) => setAge(e.target.value)} placeholder="yrs" style = {{marginLeft: "10px"}}/>
             </label>
           </p>
 
           <p>
             <label>
               Sex:
-              <select value={sex} onChange={handleSetSex}>
+              <select value={sex} onChange={handleSetSex} style = {{marginLeft: "10px"}}>
                 <option value="">Select an option</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -89,7 +90,7 @@ export default function UserInfo() {
               What are your fitness goals?
             </p>
             <p>
-              <textarea value={goals} onChange={(e) => setGoals(e.target.value)} />
+              <textarea value={goals} onChange={(e) => setGoals(e.target.value)} placeholder = "I want to..."/>
             </p>
           </p>
           <input type="submit" value="Submit" className="submit-btn" />
@@ -147,7 +148,7 @@ export default function UserInfo() {
           border-right: none;
           border-bottom: none;
           border-radius: 5px;
-          margin-bottom: 10px;
+          margin-bottom: -10px;
           color: black;
         }
 
@@ -158,7 +159,7 @@ export default function UserInfo() {
           padding: 10px;
           border: 1px solid #c7c7c7;
           border-radius: 5px;
-          margin-bottom: 10px;
+          margin-bottom: 0px;
           resize: none;
         }
 
@@ -167,9 +168,14 @@ export default function UserInfo() {
           background-color: #e73845;
           color: black;
           border: none;
-          border-radius: 5px;
+          border-radius: 15px;
           cursor: pointer;
           font-weight: bold;
+          font-size: 30px;
+          width: 250px;
+          height: 80px;
+          margin: 0 auto;
+          display: block;
         }
 
         .go-back-btn {
